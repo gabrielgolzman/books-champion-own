@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import BookItem from './components/BookItem';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+   return (
+      <div>
+         <h2>Books Champion App</h2>
+         <p>I want to read some books!</p>
+         <BookItem></BookItem>
+      </div>
+   );
+};
 
 export default App;
