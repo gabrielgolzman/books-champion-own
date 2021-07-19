@@ -1,5 +1,5 @@
 import BookItem from './BookItem';
-import Card from './Card';
+import Card from '../UI/Card';
 import './Books.css';
 
 const Books = ({ books }) => {

@@ -1,4 +1,4 @@
-import Books from './components/Books';
+import Books from './components/Books/Books';
 
 const App = () => {
    const books = [
@@ -24,7 +24,7 @@ const App = () => {
       },
    ];
    return (
-      <div className="app">
+      <div>
          <h2>Books Champion App</h2>
          <p>I want to read some books!</p>
          <Books books={books} />
