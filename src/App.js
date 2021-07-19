@@ -24,7 +24,7 @@ const App = () => {
       },
    ];
    return (
-      <div>
+      <div className="app">
          <h2>Books Champion App</h2>
          <p>I want to read some books!</p>
          <Books books={books} />

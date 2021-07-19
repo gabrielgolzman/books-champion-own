@@ -1,9 +1,10 @@
 import BookItem from './BookItem';
+import Card from './Card';
 import './Books.css';
 
 const Books = ({ books }) => {
    return (
-      <div className="books">
+      <Card className="books">
          <BookItem
             title={books[0].title}
             pageCount={books[0].pageCount}
@@ -24,7 +25,7 @@ const Books = ({ books }) => {
             pageCount={books[3].pageCount}
             date={books[3].date}
          />
-      </div>
+      </Card>
    );
 };
 
