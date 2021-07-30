@@ -1,4 +1,5 @@
 import Books from './components/Books/Books';
+import NewBook from './components/NewBook/NewBook';
 
 const App = () => {
    const books = [
@@ -23,10 +24,16 @@ const App = () => {
          date: new Date('2021-03-22'),
       },
    ];
+
+   const addedBookHandler = (bookData) => {
+      console.log('In App.js');
+      console.log(bookData);
+   };
+
    return (
       <div>
          <h2>Books Champion App</h2>
-         <p>I want to read some books!</p>
+         <NewBook onBookAdded={addedBookHandler} />
          <Books books={books} />
       </div>
    );

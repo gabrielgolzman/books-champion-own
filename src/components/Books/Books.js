@@ -1,10 +1,22 @@
+import { useState } from 'react';
+
 import BookItem from './BookItem';
 import Card from '../UI/Card';
 import './Books.css';
+import BooksFilter from '../Filter/BooksFilter';
 
 const Books = ({ books }) => {
+   const [filteredYear, setFilteredYear] = useState('2021');
+
+   const filterYearHandler = (newFilterYear) => {
+      setFilteredYear(newFilterYear);
+   };
    return (
       <Card className="books">
+         <BooksFilter
+            selected={filteredYear}
+            onFilterYearChanged={filterYearHandler}
+         />
          <BookItem
             title={books[0].title}
             pageCount={books[0].pageCount}
