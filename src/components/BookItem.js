@@ -1,13 +1,16 @@
 import './BookItem.css';
 
-const BookItem = () => {
+import ReadDate from './ReadDate';
+import BookCard from './BookCard';
+
+const BookItem = ({ title, author, dateRead, pageCount }) => {
    return (
-      <div className="book-item">
-         <h1>Título</h1>
-         <h2>Autor</h2>
-         <h3>Fecha de lectura</h3>
-         <h4>Páginas</h4>
-      </div>
+      <BookCard>
+         <h2>{title}</h2>
+         <h3>{author}</h3>
+         <ReadDate date={dateRead} />
+         <p>{pageCount} páginas</p>
+      </BookCard>
    );
 };
 
