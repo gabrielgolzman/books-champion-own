@@ -1,6 +1,6 @@
 .date-container {
    width: 80%;
-   background-color: green;
+   background-color: rgb(29, 117, 29);
    color: white;
    display: flex;
    flex-direction: row-reverse;

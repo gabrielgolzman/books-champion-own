@@ -1,6 +1,7 @@
 import './App.css';
 
 import Books from './components/books/Books';
+import NewBook from './components/form/NewBook';
 
 const App = () => {
    const books = [
@@ -29,10 +30,16 @@ const App = () => {
          pageCount: 352,
       },
    ];
+
+   const addedBookHandler = (bookData) => {
+      console.log('In App.js');
+      console.log(bookData);
+   };
+
    return (
       <div>
          <h2>Books Champion App</h2>
-         <p>¡Quiero leer libros!</p>
+         <NewBook onBookAdded={addedBookHandler} />
          <Books books={books} />
       </div>
    );
