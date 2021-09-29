@@ -1,3 +1,5 @@
+import './Books.css';
+
 import BookItem from './BookItem';
 
 const Books = ({ books }) => {
