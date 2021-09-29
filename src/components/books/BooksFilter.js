@@ -5,7 +5,6 @@ const BooksFilter = ({ filterYear, onFilterYear }) => {
       onFilterYear(event.target.value);
    };
 
-   console.log(filterYear);
    return (
       <div className="Books-filter">
          <div className="Books-filter__control">

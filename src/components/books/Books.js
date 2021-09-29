@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './Books.css';
 
-import BookItem from './BookItem';
+import BooksList from './BooksList';
 import BooksFilter from './BooksFilter';
 
 const Books = ({ books }) => {
@@ -11,6 +11,11 @@ const Books = ({ books }) => {
    const onFilterYear = (year) => {
       setYearSelected(year);
    };
+
+   const filteredBooks = books.filter(
+      (book) => book.dateRead.getFullYear().toString() === yearSelected
+   );
+
    return (
       <>
          <div>
@@ -20,30 +25,7 @@ const Books = ({ books }) => {
             />
          </div>
          <div className="books-container">
-            <BookItem
-               title={books[0].title}
-               author={books[0].author}
-               dateRead={books[0].dateRead}
-               pageCount={books[0].pageCount}
-            />
-            <BookItem
-               title={books[1].title}
-               author={books[1].author}
-               dateRead={books[1].dateRead}
-               pageCount={books[1].pageCount}
-            />
-            <BookItem
-               title={books[2].title}
-               author={books[2].author}
-               dateRead={books[2].dateRead}
-               pageCount={books[2].pageCount}
-            />
-            <BookItem
-               title={books[3].title}
-               author={books[3].author}
-               dateRead={books[3].dateRead}
-               pageCount={books[3].pageCount}
-            />
+            <BooksList books={filteredBooks} filterYear={yearSelected} />
          </div>
       </>
    );

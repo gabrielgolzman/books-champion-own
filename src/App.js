@@ -1,39 +1,43 @@
+import { useState } from 'react';
+
 import './App.css';
 
 import Books from './components/books/Books';
 import NewBook from './components/form/NewBook';
 
+const DUMMY_BOOKS = [
+   {
+      title: '100 años de soledad',
+      author: 'Gabriel García Marquez',
+      pageCount: 410,
+      dateRead: new Date(2020, 7, 12),
+   },
+   {
+      title: 'Todos los fuegos el fuego',
+      author: 'Julio Cortazar',
+      pageCount: 197,
+      dateRead: new Date(2021, 6, 11),
+   },
+   {
+      title: 'Asesinato en el Orient Express',
+      author: 'Agatha Christie',
+      pageCount: 256,
+      dateRead: new Date(2020, 5, 9),
+   },
+   {
+      title: 'Las dos torres',
+      author: 'J.R.R Tolkien',
+      pageCount: 352,
+      dateRead: new Date(2021, 3, 22),
+   },
+];
+
 const App = () => {
-   const books = [
-      {
-         title: '100 años de soledad',
-         author: 'Gabriel García Marquez',
-         dateRead: new Date(2021, 8, 12),
-         pageCount: 410,
-      },
-      {
-         title: 'Todos los fuegos el fuego',
-         author: 'Julio Cortazar',
-         dateRead: new Date(2020, 6, 11),
-         pageCount: 197,
-      },
-      {
-         title: 'Asesinato en el Orient Express',
-         author: 'Agatha Christie',
-         dateRead: new Date(2021, 5, 9),
-         pageCount: 256,
-      },
-      {
-         title: 'Las dos torres',
-         author: 'J.R.R Tolkien',
-         dateRead: new Date(2020, 3, 22),
-         pageCount: 352,
-      },
-   ];
+   const [books, setBooks] = useState(DUMMY_BOOKS);
 
    const addedBookHandler = (bookData) => {
-      console.log('In App.js');
-      console.log(bookData);
+      const newBooksArray = [bookData, ...books];
+      setBooks(newBooksArray);
    };
 
    return (

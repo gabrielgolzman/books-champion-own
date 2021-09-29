@@ -1,7 +1,11 @@
-import BookForm from './BookForm';
+import { useState } from 'react';
+
 import './NewBook.css';
 
+import BookForm from './BookForm';
+
 const NewBook = ({ onBookAdded }) => {
+   const [showForm, setShowForm] = useState(false);
    const saveBookDataHandler = (enteredBookData) => {
       const bookData = {
          ...enteredBookData,
@@ -9,9 +13,27 @@ const NewBook = ({ onBookAdded }) => {
       };
       onBookAdded(bookData);
    };
+
+   const toggleShowForm = () => {
+      setShowForm(!showForm);
+   };
+
+   if (!showForm) {
+      return (
+         <div className="new-book">
+            <button className="new-book-button" onClick={toggleShowForm}>
+               Registrar nueva lectura
+            </button>
+         </div>
+      );
+   }
+
    return (
       <div className="new-book">
-         <BookForm onBookDataSaved={saveBookDataHandler} />
+         <BookForm
+            onToggleForm={toggleShowForm}
+            onBookDataSaved={saveBookDataHandler}
+         />
       </div>
    );
 };
