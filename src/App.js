@@ -7,24 +7,28 @@ import NewBook from './components/form/NewBook';
 
 const DUMMY_BOOKS = [
    {
+      id: 'a1',
       title: '100 años de soledad',
       author: 'Gabriel García Marquez',
       pageCount: 410,
       dateRead: new Date(2020, 7, 12),
    },
    {
+      id: 'a2',
       title: 'Todos los fuegos el fuego',
       author: 'Julio Cortazar',
       pageCount: 197,
       dateRead: new Date(2021, 6, 11),
    },
    {
+      id: 'a3',
       title: 'Asesinato en el Orient Express',
       author: 'Agatha Christie',
       pageCount: 256,
       dateRead: new Date(2020, 5, 9),
    },
    {
+      id: 'a4',
       title: 'Las dos torres',
       author: 'J.R.R Tolkien',
       pageCount: 352,

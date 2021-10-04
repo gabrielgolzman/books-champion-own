@@ -1,0 +1,21 @@
+.new-max-read-control {
+   font: inherit;
+   padding: 0.5rem;
+   border-radius: 6px;
+   border: 1px solid #ccc;
+   width: 5rem;
+   max-width: 100%;
+}
+
+label {
+   color: white;
+   font-size: 1rem;
+   margin-bottom: 1rem;
+}
+form {
+   display: flex;
+   margin: 3rem;
+
+   align-items: center;
+   flex-direction: column;
+}
