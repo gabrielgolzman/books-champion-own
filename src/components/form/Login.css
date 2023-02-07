@@ -21,6 +21,16 @@
   margin-bottom: 20px;
 }
 
+.input-control {
+  font: inherit;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 20rem;
+  max-width: 100%;
+}
+
+
 .signin-button {
   text-align: end;
   background-color: black;

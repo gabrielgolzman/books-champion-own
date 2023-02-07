@@ -1,5 +1,4 @@
 import { useState } from "react";
-import InputControl from "../ui/controls/InputControl";
 import "./BookForm.css";
 
 const BookForm = ({ onBookDataSaved, onToggleForm }) => {
@@ -40,24 +39,27 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
       <div className="new-book-controls">
         <div className="new-book-control">
           <label>Título</label>
-          <InputControl
+          <input
             type="text"
+            className="input-control"
             value={enteredTitle}
             onChange={changeTitleHandler}
           />
         </div>
         <div className="new-book-control">
           <label>Autor</label>
-          <InputControl
+          <input
             type="text"
+            className="input-control"
             value={enteredAuthor}
             onChange={changeAuthorHandler}
           />
         </div>
         <div className="new-book-control">
           <label>Páginas</label>
-          <InputControl
+          <input
             type="number"
+            className="input-control"
             min="1"
             step="1"
             onChange={changePageCountHandler}
@@ -66,8 +68,9 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
         </div>
         <div className="new-book-control">
           <label>¿Cuándo terminaste de leerlo?</label>
-          <InputControl
+          <input
             type="date"
+            className="input-control"
             min="2019-01-01"
             max="2022-12-31"
             onChange={changeDateHandler}
