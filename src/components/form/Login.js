@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
 
 import "./Login.css";
+import { useNavigate } from "react-router";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -36,6 +39,9 @@ const Login = () => {
       return;
     }
     alert(`El email ingresado es: ${email} y password ${password}`);
+
+    onLogin();
+    navigate("/home");
   };
 
   return (
