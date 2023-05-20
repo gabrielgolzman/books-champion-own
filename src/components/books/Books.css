@@ -1,10 +1,14 @@
 .books-container {
-   display: flex;
+  display: flex;
 }
 
+/* .books-container-dark {
+  background-color: #020c1a;
+} */
+
 @media (max-width: 480px) {
-   .books-container {
-      flex-direction: column;
-      align-items: center;
-   }
+  .books-container {
+    flex-direction: column;
+    align-items: center;
+  }
 }

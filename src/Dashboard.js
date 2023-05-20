@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -6,6 +6,10 @@ import Row from "react-bootstrap/Row";
 import Books from "./components/books/Books";
 import NewBook from "./components/form/NewBook";
 import { Col } from "react-bootstrap";
+import { AuthenticationContext } from "./components/context/AuthenticationContext/authentication.context";
+import { ThemeContext } from "./components/context/AuthenticationContext/theme.context";
+import { APIContext } from "./components/context/AuthenticationContext/api.context";
+import Spinner from "./components/ui/Spinner";
 
 // const DUMMY_BOOKS = [
 //   {
@@ -41,7 +45,13 @@ import { Col } from "react-bootstrap";
 const Dashboard = ({ onSignOut }) => {
   const [books, setBooks] = useState([]);
 
+  const { user, handleLogout } = useContext(AuthenticationContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { isLoading, toggleLoading } = useContext(APIContext);
+
   const navigate = useNavigate();
+
+  const username = user.email.split("@")[0];
 
   const addedBookHandler = (bookData) => {
     const dateString = bookData.dateRead.toISOString().slice(0, 10);
@@ -72,11 +82,12 @@ const Dashboard = ({ onSignOut }) => {
   };
 
   const logOutHandler = () => {
-    onSignOut();
+    handleLogout();
     navigate("/login");
   };
 
   useEffect(() => {
+    toggleLoading(true);
     fetch("https://63a44a012a73744b0072f847.mockapi.io/api/books/Books", {
       headers: {
         Accept: "application/json",
@@ -84,19 +95,27 @@ const Dashboard = ({ onSignOut }) => {
     })
       .then((response) => response.json())
       .then((bookData) => {
+        toggleLoading(false);
         const booksMapped = bookData.map((book) => ({
           ...book,
           dateRead: new Date(book.dateRead),
         }));
         setBooks(booksMapped);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        toggleLoading(false);
+        console.log(error);
+      });
   }, []);
 
   return (
     <>
+      {isLoading && <Spinner />}
       <Row>
-        <Col />
+        <Col>
+          <h4 className="text-left m-3">Hola {username}!</h4>
+          <Button onClick={toggleTheme}>Cambiar tema</Button>
+        </Col>
         <Col md={3} className="mx-3 d-flex justify-content-end">
           <Button className="m-4" variant="primary" onClick={logOutHandler}>
             Cerrar Sesión

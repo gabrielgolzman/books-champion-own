@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.login-box-dark {
+  border: 1px solid white;
+}
+
 .input-container {
   margin-bottom: 20px;
 }
@@ -29,7 +33,6 @@
   width: 20rem;
   max-width: 100%;
 }
-
 
 .signin-button {
   text-align: end;

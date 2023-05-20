@@ -32,7 +32,7 @@ const Books = ({ books }) => {
         <GoalBar value={filteredBooks.length} maxValue={maxRead} />
         <BooksFilter filterYear={yearSelected} onFilterYear={onFilterYear} />
       </div>
-      <div className="books-container">
+      <div className="books-container books-container-dark">
         <BooksList books={filteredBooks} filterYear={yearSelected} />
       </div>
     </>
