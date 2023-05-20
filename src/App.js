@@ -8,6 +8,7 @@ import Login from "./components/form/Login";
 import Dashboard from "./Dashboard";
 import Protected from "./components/security/Protected";
 import { useState } from "react";
+import PageNotFound from "./components/errors/PageNotFound";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,6 +31,10 @@ const App = () => {
           <Dashboard onSignOut={logoutHandler} />
         </Protected>
       ),
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
 

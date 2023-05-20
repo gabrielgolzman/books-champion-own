@@ -35,7 +35,7 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
     setEnteredDate(event.target.value);
   };
   return (
-    <form onSubmit={submitBookHandler}>
+    <form>
       <div className="new-book-controls">
         <div className="new-book-control">
           <label>Título</label>
@@ -80,7 +80,7 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
       </div>
       <div className="new-book-actions">
         <button onClick={onToggleForm}>Cancelar</button>
-        <button onClick={onToggleForm} type="submit">
+        <button onClick={submitBookHandler} type="button">
           Agregar lectura
         </button>
       </div>
