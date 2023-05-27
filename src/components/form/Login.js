@@ -11,7 +11,7 @@ const Login = ({ onLogin }) => {
   const [password, setPassword] = useState("");
 
   const { handleLogin } = useContext(AuthenticationContext);
-  const { toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme, theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
 
@@ -50,7 +50,7 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="login-container">
-      <div className="login-box login-box-dark">
+      <div className={`login-box ${theme === "dark" && "login-box-dark"}`}>
         <h4>¡Bienvenidos a Book Champions!</h4>
         <div className="input-container">
           <input
@@ -70,10 +70,14 @@ const Login = ({ onLogin }) => {
             ref={passwordRef}
           />
         </div>
-        <button onClick={signInClicked} className="signin-button" type="button">
+        <button
+          onClick={signInClicked}
+          className="signin-button mb-4"
+          type="button"
+        >
           Iniciar sesión
         </button>
-        <Button onClick={toggleTheme}>Change theme</Button>
+        <Button onClick={toggleTheme}>Cambiar tema</Button>
       </div>
     </div>
   );
