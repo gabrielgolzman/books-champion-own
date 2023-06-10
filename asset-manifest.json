@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/books-champion-own/static/css/main.3ce3a6fa.chunk.css",
+    "main.js": "/books-champion-own/static/js/main.0df41043.chunk.js",
+    "main.js.map": "/books-champion-own/static/js/main.0df41043.chunk.js.map",
+    "runtime-main.js": "/books-champion-own/static/js/runtime-main.9c802514.js",
+    "runtime-main.js.map": "/books-champion-own/static/js/runtime-main.9c802514.js.map",
+    "static/css/2.5a954749.chunk.css": "/books-champion-own/static/css/2.5a954749.chunk.css",
+    "static/js/2.353067d1.chunk.js": "/books-champion-own/static/js/2.353067d1.chunk.js",
+    "static/js/2.353067d1.chunk.js.map": "/books-champion-own/static/js/2.353067d1.chunk.js.map",
+    "index.html": "/books-champion-own/index.html",
+    "static/css/2.5a954749.chunk.css.map": "/books-champion-own/static/css/2.5a954749.chunk.css.map",
+    "static/css/main.3ce3a6fa.chunk.css.map": "/books-champion-own/static/css/main.3ce3a6fa.chunk.css.map",
+    "static/js/2.353067d1.chunk.js.LICENSE.txt": "/books-champion-own/static/js/2.353067d1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c802514.js",
+    "static/css/2.5a954749.chunk.css",
+    "static/js/2.353067d1.chunk.js",
+    "static/css/main.3ce3a6fa.chunk.css",
+    "static/js/main.0df41043.chunk.js"
+  ]
+}
