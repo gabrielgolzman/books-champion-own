@@ -1,48 +1,101 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./BookForm.css";
 
+const initialBookForm = {
+  title: "",
+  author: "",
+  dateRead: "",
+  pageCount: "",
+  formValid: false,
+};
+
+const bookFormReducer = (state, action) => {
+  switch (action.type) {
+    case "TITLE_UPDATED":
+      return {
+        ...state,
+        title: action.value,
+        formValid:
+          action.value && state.author && state.pageCount && state.dateRead,
+      };
+    case "AUTHOR_UPDATED":
+      return {
+        ...state,
+        author: action.value,
+        formValid:
+          action.value && state.title && state.pageCount && state.dateRead,
+      };
+    case "DATE_READ_UPDATED":
+      return {
+        ...state,
+        dateRead: action.value,
+        formValid:
+          action.value && state.author && state.pageCount && state.title,
+      };
+    case "PAGE_COUNT_UPDATED":
+      return {
+        ...state,
+        pageCount: action.value,
+        formValid:
+          action.value && state.author && state.title && state.dateRead,
+      };
+    case "RESET_FORM":
+      return initialBookForm;
+    default:
+      return state;
+  }
+};
+
 const BookForm = ({ onBookDataSaved, onToggleForm }) => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAuthor, setEnteredAuthor] = useState("");
-  const [enteredPageCount, setPageCount] = useState("");
-  const [enteredDate, setEnteredDate] = useState("");
+  const [bookForm, dispatch] = useReducer(bookFormReducer, initialBookForm);
 
   const submitBookHandler = (event) => {
     event.preventDefault();
     const bookData = {
-      title: enteredTitle,
-      author: enteredAuthor,
-      pageCount: enteredPageCount,
-      dateRead: new Date(enteredDate),
+      title: bookForm.title,
+      author: bookForm.author,
+      pageCount: bookForm.pageCount,
+      dateRead: new Date(bookForm.dateRead),
     };
     onBookDataSaved(bookData);
-    setEnteredTitle("");
-    setEnteredAuthor("");
-    setPageCount("");
-    setEnteredDate("");
+    dispatch({
+      type: "RESET_FORM",
+    });
   };
 
   const changeTitleHandler = (event) => {
-    setEnteredTitle(event.target.value);
+    dispatch({
+      type: "TITLE_UPDATED",
+      value: event.target.value,
+    });
   };
   const changeAuthorHandler = (event) => {
-    setEnteredAuthor(event.target.value);
+    dispatch({
+      type: "AUTHOR_UPDATED",
+      value: event.target.value,
+    });
   };
   const changePageCountHandler = (event) => {
-    setPageCount(event.target.value);
+    dispatch({
+      type: "PAGE_COUNT_UPDATED",
+      value: event.target.value,
+    });
   };
   const changeDateHandler = (event) => {
-    setEnteredDate(event.target.value);
+    dispatch({
+      type: "DATE_READ_UPDATED",
+      value: event.target.value,
+    });
   };
   return (
-    <form onSubmit={submitBookHandler}>
+    <form>
       <div className="new-book-controls">
         <div className="new-book-control">
           <label>Título</label>
           <input
             type="text"
             className="input-control"
-            value={enteredTitle}
+            value={bookForm.title}
             onChange={changeTitleHandler}
           />
         </div>
@@ -51,7 +104,7 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
           <input
             type="text"
             className="input-control"
-            value={enteredAuthor}
+            value={bookForm.author}
             onChange={changeAuthorHandler}
           />
         </div>
@@ -63,7 +116,7 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
             min="1"
             step="1"
             onChange={changePageCountHandler}
-            value={enteredPageCount}
+            value={bookForm.pageCount}
           />
         </div>
         <div className="new-book-control">
@@ -72,15 +125,19 @@ const BookForm = ({ onBookDataSaved, onToggleForm }) => {
             type="date"
             className="input-control"
             min="2019-01-01"
-            max="2022-12-31"
+            max="2024-12-31"
             onChange={changeDateHandler}
-            value={enteredDate}
+            value={bookForm.dateRead}
           />
         </div>
       </div>
       <div className="new-book-actions">
         <button onClick={onToggleForm}>Cancelar</button>
-        <button onClick={onToggleForm} type="submit">
+        <button
+          disabled={!bookForm.formValid}
+          onClick={submitBookHandler}
+          type="button"
+        >
           Agregar lectura
         </button>
       </div>

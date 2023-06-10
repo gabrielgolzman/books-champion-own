@@ -7,33 +7,46 @@ import {
 import Login from "./components/form/Login";
 import Dashboard from "./Dashboard";
 import Protected from "./components/security/Protected";
-import { useState } from "react";
+
+import "./App.css";
+
+import { useContext } from "react";
+import PageNotFound from "./components/errors/PageNotFound";
+import { ThemeContext } from "./components/context/AuthenticationContext/theme.context";
+import { APIContext } from "./components/context/AuthenticationContext/api.context";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const loginHandler = () => {
-    setIsLoggedIn(true);
-  };
-
-  const logoutHandler = () => {
-    setIsLoggedIn(false);
-  };
+  const { theme } = useContext(ThemeContext);
+  const { isLoading } = useContext(APIContext);
 
   const router = createBrowserRouter([
     { path: "/", element: <Navigate to="login" /> },
-    { path: "/login", element: <Login onLogin={loginHandler} /> },
+    { path: "/login", element: <Login /> },
     {
       path: "/home",
       element: (
-        <Protected isSignedIn={isLoggedIn}>
-          <Dashboard onSignOut={logoutHandler} />
+        <Protected>
+          <Dashboard />
         </Protected>
       ),
     },
+    {
+      path: "*",
+      element: <PageNotFound />,
+    },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <div
+        className={`${theme === "dark" && "dark-theme"} ${
+          isLoading && "opacity-80"
+        }`}
+      >
+        <RouterProvider router={router} />
+      </div>
+    </>
+  );
 };
 
 export default App;

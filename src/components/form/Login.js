@@ -1,11 +1,17 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import "./Login.css";
 import { useNavigate } from "react-router";
+import { AuthenticationContext } from "../context/AuthenticationContext/authentication.context";
+import { Button } from "react-bootstrap";
+import { ThemeContext } from "../context/AuthenticationContext/theme.context";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { handleLogin } = useContext(AuthenticationContext);
+  const { toggleTheme, theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
 
@@ -38,15 +44,13 @@ const Login = ({ onLogin }) => {
       passwordRef.current.style.outline = "none";
       return;
     }
-    alert(`El email ingresado es: ${email} y password ${password}`);
-
-    onLogin();
+    handleLogin(email);
     navigate("/home");
   };
 
   return (
     <div className="login-container">
-      <div className="login-box">
+      <div className={`login-box ${theme === "dark" && "login-box-dark"}`}>
         <h4>¡Bienvenidos a Book Champions!</h4>
         <div className="input-container">
           <input
@@ -66,9 +70,14 @@ const Login = ({ onLogin }) => {
             ref={passwordRef}
           />
         </div>
-        <button onClick={signInClicked} className="signin-button" type="button">
+        <button
+          onClick={signInClicked}
+          className="signin-button mb-4"
+          type="button"
+        >
           Iniciar sesión
         </button>
+        <Button onClick={toggleTheme}>Cambiar tema</Button>
       </div>
     </div>
   );
