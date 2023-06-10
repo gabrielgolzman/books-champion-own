@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 import "./Books.css";
 
@@ -7,13 +7,14 @@ import BooksFilter from "./BooksFilter";
 import GoalBar from "../goal-bar/GoalBar";
 import GoalRead from "../goal-bar/GoalRead";
 
-const Books = ({ books }) => {
+const Books = memo(({ books }) => {
+  console.log("In Books");
   const [yearSelected, setYearSelected] = useState("2021");
   const [maxRead, setMaxRead] = useState(7);
 
-  const onFilterYear = (year) => {
+  const onFilterYear = useCallback((year) => {
     setYearSelected(year);
-  };
+  }, []);
 
   const onMaxRead = (max) => {
     setMaxRead(max);
@@ -37,6 +38,6 @@ const Books = ({ books }) => {
       </div>
     </>
   );
-};
+});
 
 export default Books;

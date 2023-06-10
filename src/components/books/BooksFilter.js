@@ -1,6 +1,8 @@
+import { memo } from "react";
 import "./BooksFilter.css";
 
-const BooksFilter = ({ filterYear, onFilterYear }) => {
+const BooksFilter = memo(({ filterYear, onFilterYear }) => {
+  console.log("In BookFilter");
   const onYearSelected = (event) => {
     onFilterYear(event.target.value);
   };
@@ -18,6 +20,6 @@ const BooksFilter = ({ filterYear, onFilterYear }) => {
       </div>
     </div>
   );
-};
+});
 
 export default BooksFilter;

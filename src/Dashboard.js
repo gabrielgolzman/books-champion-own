@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -53,33 +53,36 @@ const Dashboard = ({ onSignOut }) => {
 
   const username = user.email.split("@")[0];
 
-  const addedBookHandler = (bookData) => {
-    const dateString = bookData.dateRead.toISOString().slice(0, 10);
+  const addedBookHandler = useCallback(
+    (bookData) => {
+      const dateString = bookData.dateRead.toISOString().slice(0, 10);
 
-    fetch("https://63a44a012a73744b0072f847.mockapi.io/api/books/Books", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        title: bookData.title,
-        author: bookData.author,
-        dateRead: dateString,
-        pageCount: parseInt(bookData.pageCount, 10),
-      }),
-    })
-      .then((response) => {
-        if (response.ok) return response.json();
-        else {
-          throw new Error("The response has some errors!");
-        }
+      fetch("https://63a44a012a73744b0072f847.mockapi.io/api/books/Books", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          title: bookData.title,
+          author: bookData.author,
+          dateRead: dateString,
+          pageCount: parseInt(bookData.pageCount, 10),
+        }),
       })
-      .then(() => {
-        const newBooksArray = [bookData, ...books];
-        setBooks(newBooksArray);
-      })
-      .catch((error) => console.log(error));
-  };
+        .then((response) => {
+          if (response.ok) return response.json();
+          else {
+            throw new Error("The response has some errors!");
+          }
+        })
+        .then(() => {
+          const newBooksArray = [bookData, ...books];
+          setBooks(newBooksArray);
+        })
+        .catch((error) => console.log(error));
+    },
+    [books]
+  );
 
   const logOutHandler = () => {
     handleLogout();
